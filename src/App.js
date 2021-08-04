@@ -1,7 +1,7 @@
 import React from "react";
 
 import Layout from "./components/Layout/Layout";
-import Lights from "./components/Background/Lights/Lights";
+import Lights from "./components/Effects/Lights/Lights";
 
 import "./App.css";
 

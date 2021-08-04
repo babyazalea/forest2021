@@ -2,6 +2,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Noto+Serif+KR:wght@300;400;700&display=swap");
 
+/* fontawesome */
+
+@import url("../node_modules/@fortawesome/fontawesome-free/css/all.css");
+
 /* global style */
 
 body {
@@ -18,158 +22,9 @@ code {
     monospace;
 }
 
-/* background lights */
-
-.light {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  /* display: none; */
-}
-
-.light1 {
-  background-image: url("./assets/images/forest_light1.png");
-  opacity: 0;
-
-  animation: light1 1.5s 1s alternate infinite;
-}
-@keyframes light1 {
-  0% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.light2 {
-  background-image: url("./assets/images/forest_light2.png");
-  opacity: 0;
-
-  animation: light2 1.5s 1.3s alternate-reverse infinite;
-}
-@keyframes light2 {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0.2;
-  }
-}
-
-.light3 {
-  background-image: url("./assets/images/forest_light3.png");
-  opacity: 0;
-
-  animation: light3 1.5s 2s alternate-reverse infinite;
-}
-@keyframes light3 {
-  0% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.4;
-  }
-  100% {
-    opacity: 0.8;
-  }
-}
-
-.light4 {
-  background-image: url("./assets/images/forest_light4.png");
-  opacity: 0;
-
-  animation: light4 1.5s 2.8s alternate-reverse infinite;
-}
-@keyframes light4 {
-  0% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 0.3;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.light5 {
-  background-image: url("./assets/images/forest_light5.png");
-  opacity: 0;
-
-  animation: light5 1s 3.3s alternate-reverse infinite;
-}
-@keyframes light5 {
-  0% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.light6 {
-  background-image: url("./assets/images/forest_light6.png");
-  opacity: 0;
-
-  animation: light6 1s 4s alternate-reverse infinite;
-}
-@keyframes light6 {
-  0% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 0.8;
-  }
-}
-
-.light7 {
-  background-image: url("./assets/images/forest_light7.png");
-  opacity: 0;
-
-  animation: light7 4.8s alternate-reverse infinite;
-}
-@keyframes light7 {
-  0% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 0.8;
-  }
-}
-
-.light8 {
-  background-image: url("./assets/images/forest_light8.png");
-  opacity: 0;
-
-  animation: light8 1s 5s alternate-reverse infinite;
-}
-@keyframes light8 {
-  0% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 0.8;
-  }
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
