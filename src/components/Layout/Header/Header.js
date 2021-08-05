@@ -14,19 +14,19 @@ const Header = () => {
           </li>
           <li id="notice">
             <i className="fas fa-check"></i>
-            <span>notice</span>
+            <span>소개</span>
           </li>
           <li>
             <i className="fas fa-check"></i>
-            <a href="portfolio.html">portfolio</a>
+            <span>만든 것들</span>
           </li>
           <li>
             <i className="fas fa-check"></i>
-            <a href="https://github.com/babyazalea">github</a>
+            <span>읽을거리</span>
           </li>
           <li id="credits">
             <i className="fas fa-check"></i>
-            <span>credits</span>
+            <span>숲에 대하여</span>
           </li>
         </ul>
       </nav>

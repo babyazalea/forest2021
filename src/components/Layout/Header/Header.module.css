@@ -19,8 +19,8 @@
 .menu li {
   position: relative;
   color: #ffa801;
-  font-family: "Gloria Hallelujah", cursive;
-  font-weight: bold;
+  font-family: "Gowun Batang", serif;
+  font-weight: 700;
   font-size: 25px;
   cursor: pointer;
 }
@@ -40,7 +40,7 @@
   transition: all 0.3s;
 }
 .menu li:hover:not(:first-child) i {
-  top: -7px;
+  top: -12px;
   transform: translateX(-50%) scale(1);
   opacity: 1;
 }
