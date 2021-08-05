@@ -1,14 +1,15 @@
 .header {
   position: fixed;
-  top: 75px;
-  right: 80px;
+  width: 33%;
+  top: 9%;
+  right: 1%;
   z-index: 2;
 }
 
 .menu {
-  display: flex;
+  display: grid;
   align-items: center;
-  gap: 35px;
+  grid-template-columns: 0.8fr 1fr 1.2fr 1.2fr 1.5fr;
 }
 
 .menu a {
@@ -21,8 +22,9 @@
   color: #ffa801;
   font-family: "Gowun Batang", serif;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 1.1rem;
   cursor: pointer;
+  justify-self: center;
 }
 
 .menu li:first-child {
