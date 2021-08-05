@@ -1,0 +1,50 @@
+.legal-pad {
+  position: absolute;
+  width: 545px;
+  height: 0%;
+  z-index: 1;
+  right: 0;
+  overflow: hidden;
+  /* display:none; */
+  transition: all 1s;
+}
+.legal-pad.on {
+  height: 100%;
+}
+.legal-pad ul {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(245, 246, 250, 0.9);
+  padding-top: 130px;
+  box-sizing: border-box;
+  border-top: 30px solid #130f40;
+  overflow: hidden;
+}
+.legal-pad ul::before {
+  position: absolute;
+  right: 0;
+  top: 80px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  z-index: 3;
+  background: #fab1a0;
+}
+.legal-pad ul li {
+  width: 100%;
+  padding-top: 40px;
+  border-bottom: 1px dashed #999;
+  position: relative;
+}
+.legal-pad ul li:first-child {
+  border: none;
+  padding-top: 0;
+}
+.legal-pad ul li p {
+  position: absolute;
+  bottom: 3px;
+  left: 30px;
+  font-family: Noto Serif KR;
+}
