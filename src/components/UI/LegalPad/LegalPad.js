@@ -17,18 +17,20 @@ const LegalPad = (props) => {
     }
   }
 
+  let legalPadClassName = `${classes["legal-pad"]}`;
+
   return (
-    <div className={classes["legal-pad"]}>
+    <div className={legalPadClassName}>
       <ul>
         <li></li>
         <li></li>
-        {transformedArray.map((line) => (
-          <li>
+        {transformedArray.map((line, index) => (
+          <li key={"text" + index}>
             <span>{line}</span>
           </li>
         ))}
-        {emptyLines.map((emptyLine) => (
-          <li></li>
+        {emptyLines.map((emptyLine, index) => (
+          <li key={"empty" + index}></li>
         ))}
       </ul>
     </div>

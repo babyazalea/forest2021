@@ -4,3 +4,8 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.main > div {
+  width: 35%;
+  height: 100%;
+}

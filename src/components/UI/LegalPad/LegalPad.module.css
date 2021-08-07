@@ -4,11 +4,6 @@
   z-index: 1;
   right: 0;
   overflow: hidden;
-  transition: all 1s;
-}
-
-.legal-pad.on {
-  height: 100%;
 }
 
 .legal-pad ul {
@@ -22,6 +17,9 @@
 }
 
 .legal-pad ul li {
+  display: flex;
+  font-family: "Gowun Dodum";
+  align-items: flex-end;
   width: 100%;
   height: 40px;
   border-bottom: 1px solid #0095c74f;

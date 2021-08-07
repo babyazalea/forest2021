@@ -1,7 +1,7 @@
 .header {
   position: fixed;
   width: 33%;
-  top: 9%;
+  top: 65px;
   right: 1%;
   z-index: 2;
 }
@@ -41,13 +41,15 @@
   opacity: 0;
   transition: all 0.3s;
 }
+
 .menu li:hover:not(:first-child) i {
-  top: -12px;
+  top: -15px;
   transform: translateX(-50%) scale(1);
   opacity: 1;
 }
-.menu li .fa-check.checked {
-  top: -7px;
+
+.menu li:not(:first-child) .checked {
+  top: -15px;
   transform: translateX(-50%) scale(1);
   opacity: 1;
 }

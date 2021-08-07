@@ -7,7 +7,10 @@ import classes from "./Layout.module.css";
 const Layout = (props) => {
   return (
     <React.Fragment>
-      <Header />
+      <Header
+        selectedMenu={props.selectedMenu}
+        menuClickHandler={props.menuClickHandler}
+      />
       <main className={classes.main}>{props.children}</main>
     </React.Fragment>
   );
