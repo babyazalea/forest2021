@@ -2,7 +2,7 @@ import React from "react";
 
 import Header from "./Header/Header";
 
-import classes from "./Layout.module.css";
+import "./Layout.css";
 
 const Layout = (props) => {
   return (
@@ -11,7 +11,7 @@ const Layout = (props) => {
         selectedMenu={props.selectedMenu}
         menuClickHandler={props.menuClickHandler}
       />
-      <main className={classes.main}>{props.children}</main>
+      <main>{props.children}</main>
     </React.Fragment>
   );
 };

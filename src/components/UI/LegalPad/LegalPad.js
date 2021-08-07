@@ -1,6 +1,6 @@
 import React from "react";
 
-import classes from "./LegalPad.module.css";
+import "./LegalPad.css";
 
 const LegalPad = (props) => {
   // min length for list: 20
@@ -17,10 +17,8 @@ const LegalPad = (props) => {
     }
   }
 
-  let legalPadClassName = `${classes["legal-pad"]}`;
-
   return (
-    <div className={legalPadClassName}>
+    <div className="legal-pad">
       <ul>
         <li></li>
         <li></li>

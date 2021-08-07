@@ -1,14 +1,14 @@
 import React from "react";
 
-import classes from "./Header.module.css";
+import "./Header.css";
 
 const Header = (props) => {
-  let checkedClass = `fas fa-check ${classes.checked}`;
+  let checkedClass = `fas fa-check checked`;
 
   return (
-    <header className={classes.header}>
+    <header>
       <nav>
-        <ul className={classes.menu}>
+        <ul className="menu">
           <li onClick={() => props.menuClickHandler("home")}>
             <i className="fas fa-tree"></i>
           </li>

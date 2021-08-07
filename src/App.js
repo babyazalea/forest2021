@@ -87,24 +87,42 @@ const App = () => {
           }
         });
         break;
-      default:
+      case "home":
         setSelectedMenu({
           notice: false,
           portfolios: false,
           reading: false,
           credits: false,
         });
+        break;
+      default:
+        return;
     }
+  };
+
+  const viewCloseHandler = () => {
+    setSelectedMenu({
+      notice: false,
+      portfolios: false,
+      reading: false,
+      credits: false,
+    });
   };
 
   return (
     <div className="App">
       <Lights />
       <Layout selectedMenu={selectedMenu} menuClickHandler={menuClickHandler}>
-        {selectedMenu.notice && <Notice />}
-        {selectedMenu.portfolios && <Portfolios />}
-        {selectedMenu.reading && <Reading />}
-        {selectedMenu.credits && <Credits />}
+        {selectedMenu.notice && <Notice viewCloseHandler={viewCloseHandler} />}
+        {selectedMenu.portfolios && (
+          <Portfolios viewCloseHandler={viewCloseHandler} />
+        )}
+        {selectedMenu.reading && (
+          <Reading viewCloseHandler={viewCloseHandler} />
+        )}
+        {selectedMenu.credits && (
+          <Credits viewCloseHandler={viewCloseHandler} />
+        )}
       </Layout>
     </div>
   );
