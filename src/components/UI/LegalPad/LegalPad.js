@@ -1,5 +1,5 @@
 import React from "react";
-import { useSpring, animated } from "react-spring";
+import { useSpring, config, animated } from "react-spring";
 
 import "./LegalPad.css";
 
@@ -21,6 +21,7 @@ const LegalPad = (props) => {
   const animation = useSpring({
     to: { height: "100%" },
     from: { height: "0%" },
+    config: config.molasses,
   });
 
   return (
