@@ -1,4 +1,5 @@
 import React from "react";
+import { useSpring, animated } from "react-spring";
 
 import "./LegalPad.css";
 
@@ -17,21 +18,28 @@ const LegalPad = (props) => {
     }
   }
 
+  const animation = useSpring({
+    to: { height: "100%" },
+    from: { height: "0%" },
+  });
+
   return (
-    <div className="legal-pad">
-      <ul>
-        <li></li>
-        <li></li>
-        {transformedArray.map((line, index) => (
-          <li key={"text" + index}>
-            <span>{line}</span>
-          </li>
-        ))}
-        {emptyLines.map((emptyLine, index) => (
-          <li key={"empty" + index}></li>
-        ))}
-      </ul>
-    </div>
+    <animated.div style={animation}>
+      <div className="legal-pad">
+        <ul>
+          <li></li>
+          <li></li>
+          {transformedArray.map((line, index) => (
+            <li key={"text" + index}>
+              <span>{line}</span>
+            </li>
+          ))}
+          {emptyLines.map((emptyLine, index) => (
+            <li key={"empty" + index}></li>
+          ))}
+        </ul>
+      </div>
+    </animated.div>
   );
 };
 

@@ -5,4 +5,5 @@
   background-image: url("./assets/images/alex-gorham_forest_comp.jpg");
   background-size: cover;
   background-position: 50%;
+  user-select: none;
 }
