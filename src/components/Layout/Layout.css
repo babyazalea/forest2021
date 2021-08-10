@@ -5,10 +5,3 @@ main {
   display: flex;
   justify-content: flex-end;
 }
-
-main .views {
-  position: relative;
-  width: 35%;
-  height: 100%;
-  overflow: hidden;
-}

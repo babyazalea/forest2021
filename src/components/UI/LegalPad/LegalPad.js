@@ -39,12 +39,23 @@ const LegalPad = (props) => {
   });
 
   const cardTransApi = useSpringRef();
-  const transitions = useTransition(true, {
-    ref: cardTransApi,
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-  });
+  const transitions = useTransition(
+    props.portfolios ? props.portfolios : [],
+    props.portfolios
+      ? {
+          ref: cardTransApi,
+          trail: 800 / props.portfolios.length,
+          from: { opacity: 0 },
+          enter: { opacity: 0.9 },
+          leave: { opacity: 0 },
+        }
+      : {
+          ref: cardTransApi,
+          from: { opacity: 0 },
+          enter: { opacity: 0.9 },
+          leave: { opacity: 0 },
+        }
+  );
 
   useChain([legalPadSpringApi, cardTransApi], [0, 0.15]);
 
@@ -65,9 +76,21 @@ const LegalPad = (props) => {
             <li key={"empty" + index}></li>
           ))}
         </ul>
-        {transitions((styles) => (
-          <animated.div style={styles}>{props.children}</animated.div>
-        ))}
+        {props.portfolios && (
+          <div className="portfolio-container">
+            <ul>
+              {transitions((style, item) => (
+                <animated.li
+                  className="portfolio-item"
+                  key={item.id}
+                  style={style}
+                >
+                  <span>{item.title}</span>
+                </animated.li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </animated.div>
   );
