@@ -21,7 +21,7 @@ const LegalPad = (props) => {
   const animation = useSpring({
     to: { height: "100%" },
     from: { height: "0%" },
-    config: config.molasses,
+    config: config.default,
   });
 
   return (
