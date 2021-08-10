@@ -7,6 +7,7 @@ main {
 }
 
 main .views {
+  position: relative;
   width: 35%;
   height: 100%;
   overflow: hidden;
