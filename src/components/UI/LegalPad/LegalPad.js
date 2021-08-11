@@ -7,8 +7,10 @@ import {
   useTransition,
   useChain,
 } from "react-spring";
+import Card from "../Card/Card";
 
 import "./LegalPad.css";
+import Portfolio from "./Portfolio/Portfolio";
 
 const LegalPad = (props) => {
   // min length for list: 20
@@ -46,15 +48,11 @@ const LegalPad = (props) => {
           ref: cardTransApi,
           trail: 800 / props.portfolios.length,
           from: { opacity: 0 },
-          enter: { opacity: 0.9 },
+          enter: { opacity: 1 },
           leave: { opacity: 0 },
+          config: config.molasses,
         }
-      : {
-          ref: cardTransApi,
-          from: { opacity: 0 },
-          enter: { opacity: 0.9 },
-          leave: { opacity: 0 },
-        }
+      : {}
   );
 
   useChain([legalPadSpringApi, cardTransApi], [0, 0.15]);
@@ -85,7 +83,9 @@ const LegalPad = (props) => {
                   key={item.id}
                   style={style}
                 >
-                  <span>{item.title}</span>
+                  <Card>
+                    <Portfolio portfolio={item} />
+                  </Card>
                 </animated.li>
               ))}
             </ul>

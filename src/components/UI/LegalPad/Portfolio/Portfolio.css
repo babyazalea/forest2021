@@ -1,0 +1,57 @@
+.portfolio {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+.portfolio-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.portfolio-logo {
+  float: left;
+  width: 110px;
+  height: 80px;
+  border: 1px solid green;
+  margin: 3px 7px 0 0;
+}
+
+.portfolio-description {
+  text-align: justify;
+  font-size: 0.9rem;
+  word-break: normal;
+}
+
+.portfolio-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+  color: black;
+}
+
+.portfolio-icons a {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.portfolio-icons a:hover {
+  opacity: 1;
+}
+
+.portfolio-icons a:not(:last-child) {
+  margin-right: 20px;
+}
+
+.portfolio-icon-play {
+  font-size: 1.3rem;
+}
+
+.portfolio-icon-github {
+  font-size: 1.5rem;
+}

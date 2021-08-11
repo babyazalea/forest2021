@@ -18,7 +18,6 @@
 
 .legal-pad > ul li {
   display: flex;
-  font-family: "Gowun Dodum";
   align-items: flex-end;
   width: 100%;
   height: 40px;
