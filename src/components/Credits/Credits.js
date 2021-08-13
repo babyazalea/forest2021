@@ -9,7 +9,7 @@ const Credits = (props) => {
   return (
     <React.Fragment>
       <Backdrop onClose={props.viewCloseHandler} />
-      <div className="views credits">
+      <div className="tap credits">
         <LegalPad text={text} />
       </div>
     </React.Fragment>

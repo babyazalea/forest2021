@@ -9,7 +9,7 @@ const Reading = (props) => {
   return (
     <React.Fragment>
       <Backdrop onClose={props.viewCloseHandler} />
-      <div className="views reading">
+      <div className="tap reading">
         <LegalPad text={text} />
       </div>
     </React.Fragment>

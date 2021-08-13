@@ -33,7 +33,7 @@ const Portfolios = (props) => {
   return (
     <React.Fragment>
       <Backdrop onClose={props.viewCloseHandler} />
-      <div className="views portfolios">
+      <div className="tap portfolios">
         <LegalPad portfolios={portfolios}>
           <ControlBox isWriting={false} />
         </LegalPad>

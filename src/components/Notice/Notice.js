@@ -10,7 +10,7 @@ const Notice = (props) => {
   return (
     <React.Fragment>
       <Backdrop onClose={props.viewCloseHandler} />
-      <div className="views notice">
+      <div className="tap notice">
         <LegalPad text={text} />
       </div>
     </React.Fragment>
