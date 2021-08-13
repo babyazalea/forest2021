@@ -28,3 +28,34 @@
   border-bottom: 5px double #fab1a0;
   padding-top: 40px;
 }
+
+.legal-pad ul .control-btns {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.portfolio-container {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 70%;
+}
+
+.portfolio-container ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+.portfolio-container ul li {
+  width: 90%;
+  min-height: 200px;
+}

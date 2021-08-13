@@ -1,11 +1,11 @@
 import React from "react";
-import EditingControl from "./EditControl/EditControl";
+import ControlBox from "../UI/ControlBox/ControlBox";
 import EditingContent from "./EditingContent/EditingContent";
 
 const Edit = () => {
   return (
     <div className="editing">
-      <EditingControl />
+      <ControlBox />
       <EditingContent />
     </div>
   );

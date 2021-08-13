@@ -1,6 +1,7 @@
 import React from "react";
 
 import Backdrop from "../UI/Backdrop/Backdrop";
+import ControlBox from "../UI/ControlBox/ControlBox";
 import LegalPad from "../UI/LegalPad/LegalPad";
 
 const Portfolios = (props) => {
@@ -33,7 +34,9 @@ const Portfolios = (props) => {
     <React.Fragment>
       <Backdrop onClose={props.viewCloseHandler} />
       <div className="views portfolios">
-        <LegalPad portfolios={portfolios} />
+        <LegalPad portfolios={portfolios}>
+          <ControlBox isWriting={false} />
+        </LegalPad>
       </div>
     </React.Fragment>
   );

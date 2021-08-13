@@ -62,7 +62,7 @@ const LegalPad = (props) => {
       <div className="legal-pad">
         <ul>
           <li></li>
-          <li></li>
+          <li className="control-btns">{props.children}</li>
           {transformedArray
             ? transformedArray.map((line, index) => (
                 <li key={"text" + index}>
