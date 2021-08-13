@@ -1,7 +1,13 @@
 import React from "react";
 
-const EditingContent = () => {
-  return <div className="editing-content"></div>;
+import Form from "../../ui/Form/Form";
+
+const EditingContent = (props) => {
+  return (
+    <div className="editing-content">
+      <Form isPortFolio={props.isPortFolio} data={props.data} />
+    </div>
+  );
 };
 
 export default EditingContent;

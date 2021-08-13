@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   useSpring,
   config,
@@ -7,13 +7,17 @@ import {
   useTransition,
   useChain,
 } from "react-spring";
+
 import Card from "../Card/Card";
 import ControlBox from "../ControlBox/ControlBox";
+import Portfolio from "./Portfolio/Portfolio";
+import EditingContent from "../../edit/EditingContent/EditingContent";
 
 import "./LegalPad.css";
-import Portfolio from "./Portfolio/Portfolio";
 
 const LegalPad = (props) => {
+  const [editMode, setEditMode] = useState(false);
+
   // min length for list: 20
   let transformedArray;
   let emptyLines = [];
@@ -58,15 +62,44 @@ const LegalPad = (props) => {
 
   useChain([legalPadSpringApi, cardTransApi], [0, 0.15]);
 
+  const editModeHandler = () => {
+    setEditMode(true);
+  };
+
+  const portfolioList = (
+    <div className="portfolio-container">
+      <ul>
+        {transitions((style, item) => (
+          <animated.li className="portfolio-item" key={item.id} style={style}>
+            <Card>
+              <Portfolio portfolio={item} />
+            </Card>
+          </animated.li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  const editingPart = (
+    <EditingContent
+      data={props.text}
+      isPortFolio={props.portfolios ? true : false}
+    />
+  );
+
   return (
     <animated.div style={animation}>
       <div className="legal-pad">
         <ul>
           <li></li>
           <li className="control-btns">
-            <ControlBox isWriting={false} justEdit={props.isJustEdit} />
+            <ControlBox
+              isWriting={false}
+              justEdit={props.isJustEdit}
+              editModeHandler={editModeHandler}
+            />
           </li>
-          {transformedArray
+          {transformedArray && !editMode
             ? transformedArray.map((line, index) => (
                 <li key={"text" + index}>
                   <span>{line}</span>
@@ -77,23 +110,8 @@ const LegalPad = (props) => {
             <li key={"empty" + index}></li>
           ))}
         </ul>
-        {props.portfolios && (
-          <div className="portfolio-container">
-            <ul>
-              {transitions((style, item) => (
-                <animated.li
-                  className="portfolio-item"
-                  key={item.id}
-                  style={style}
-                >
-                  <Card>
-                    <Portfolio portfolio={item} />
-                  </Card>
-                </animated.li>
-              ))}
-            </ul>
-          </div>
-        )}
+        {editMode ? editingPart : null}
+        {props.portfolios && portfolioList}
       </div>
     </animated.div>
   );

@@ -25,7 +25,7 @@ const ControlBox = (props) => {
         </button>
       )}
       <button>
-        <i className="fas fa-edit"></i>
+        <i className="fas fa-edit" onClick={props.editModeHandler}></i>
       </button>
     </React.Fragment>
   );

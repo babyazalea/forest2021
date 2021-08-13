@@ -7,6 +7,7 @@ const Form = (props) => {
       id="section-description"
       cols="30"
       rows="10"
+      value={props.data}
     ></textarea>
   );
 
