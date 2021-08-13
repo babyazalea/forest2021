@@ -1,7 +1,7 @@
 import React from "react";
 
-import Backdrop from "../UI/Backdrop/Backdrop";
-import LegalPad from "../UI/LegalPad/LegalPad";
+import Backdrop from "../../ui/Backdrop/Backdrop";
+import LegalPad from "../../ui/LegalPad/LegalPad";
 
 const Reading = (props) => {
   const text = "이것은 리딩입니다.<br/> test text.";

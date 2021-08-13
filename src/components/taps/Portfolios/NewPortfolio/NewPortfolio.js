@@ -1,6 +1,6 @@
 import React from "react";
-import ControlBox from "../../UI/ControlBox/ControlBox";
-import Form from "../../UI/Form/Form";
+import ControlBox from "../../../UI/ControlBox/ControlBox";
+import Form from "../../../UI/Form/Form";
 
 const NewPortfolio = () => {
   return (

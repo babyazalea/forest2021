@@ -1,8 +1,8 @@
 import React from "react";
 
-import Backdrop from "../UI/Backdrop/Backdrop";
-import ControlBox from "../UI/ControlBox/ControlBox";
-import LegalPad from "../UI/LegalPad/LegalPad";
+import Backdrop from "../../ui/Backdrop/Backdrop";
+import ControlBox from "../../ui/ControlBox/ControlBox";
+import LegalPad from "../../ui/LegalPad/LegalPad";
 
 const Portfolios = (props) => {
   const portfolios = [

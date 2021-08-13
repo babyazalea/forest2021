@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-import Layout from "./components/Layout/Layout";
-import Lights from "./components/Effects/Lights/Lights";
-import Notice from "./components/Notice/Notice";
-import Portfolios from "./components/Portfolios/Portfolios";
-import Reading from "./components/Reading/Reading";
-import Credits from "./components/Credits/Credits";
+import Layout from "./components/layout/Layout";
+import Lights from "./components/effects/Lights/Lights";
+import Notice from "./components/taps/Notice/Notice";
+import Portfolios from "./components/taps/Portfolios/Portfolios";
+import Reading from "./components/taps/Reading/Reading";
+import Credits from "./components/taps/Credits/Credits";
 
 import "./App.css";
 
