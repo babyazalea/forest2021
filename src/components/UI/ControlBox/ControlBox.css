@@ -1,0 +1,14 @@
+.control-box {
+  margin-right: 20px;
+}
+
+.control-box button {
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.control-box button:not(:last-child) {
+  margin-right: 10px;
+}

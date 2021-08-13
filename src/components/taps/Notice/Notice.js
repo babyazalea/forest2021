@@ -11,7 +11,7 @@ const Notice = (props) => {
     <React.Fragment>
       <Backdrop onClose={props.viewCloseHandler} />
       <div className="tap notice">
-        <LegalPad text={text} />
+        <LegalPad text={text} isJustEdit={true} />
       </div>
     </React.Fragment>
   );

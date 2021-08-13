@@ -1,6 +1,7 @@
 import React from "react";
 
 import Backdrop from "../../ui/Backdrop/Backdrop";
+import ControlBox from "../../ui/ControlBox/ControlBox";
 import LegalPad from "../../ui/LegalPad/LegalPad";
 
 const Credits = (props) => {
@@ -9,8 +10,8 @@ const Credits = (props) => {
   return (
     <React.Fragment>
       <Backdrop onClose={props.viewCloseHandler} />
-      <div className="taps credits">
-        <LegalPad text={text} />
+      <div className="tap credits">
+        <LegalPad text={text} isJustEdit={true} />
       </div>
     </React.Fragment>
   );

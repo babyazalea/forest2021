@@ -8,6 +8,7 @@ import {
   useChain,
 } from "react-spring";
 import Card from "../Card/Card";
+import ControlBox from "../ControlBox/ControlBox";
 
 import "./LegalPad.css";
 import Portfolio from "./Portfolio/Portfolio";
@@ -62,7 +63,9 @@ const LegalPad = (props) => {
       <div className="legal-pad">
         <ul>
           <li></li>
-          <li className="control-btns">{props.children}</li>
+          <li className="control-btns">
+            <ControlBox isWriting={false} justEdit={props.isJustEdit} />
+          </li>
           {transformedArray
             ? transformedArray.map((line, index) => (
                 <li key={"text" + index}>

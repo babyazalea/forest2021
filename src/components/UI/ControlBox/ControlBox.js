@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import "./ControlBox.css";
+
 const ControlBox = (props) => {
   // const [isWriting, setIsWriting] = useState(false);
 
@@ -17,9 +19,11 @@ const ControlBox = (props) => {
 
   const newAndEdit = (
     <React.Fragment>
-      <button>
-        <i class="fas fa-plus"></i>
-      </button>
+      {props.justEdit ? null : (
+        <button>
+          <i className="fas fa-plus"></i>
+        </button>
+      )}
       <button>
         <i className="fas fa-edit"></i>
       </button>
