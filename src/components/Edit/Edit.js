@@ -1,12 +1,13 @@
 import React from "react";
 import EditingControl from "./EditControl/EditControl";
-import EditingPage from "./EditingPage/EditingPage";
+import EditingContent from "./EditingContent/EditingContent";
 
 const Edit = () => {
   return (
-    <EditingPage>
+    <div className="editing">
       <EditingControl />
-    </EditingPage>
+      <EditingContent />
+    </div>
   );
 };
 
