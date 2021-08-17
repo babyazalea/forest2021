@@ -22,8 +22,8 @@ const LegalPad = (props) => {
   let transformedArray;
   let emptyLines = [];
 
-  if (props.text) {
-    transformedArray = props.text.split("<br/>");
+  if (props.content) {
+    transformedArray = props.content.split("<br/>");
   }
 
   if (transformedArray && transformedArray.length < 20) {
@@ -82,7 +82,7 @@ const LegalPad = (props) => {
 
   const editingPart = (
     <EditingContent
-      data={props.text}
+      data={props.content}
       isPortFolio={props.portfolios ? true : false}
     />
   );

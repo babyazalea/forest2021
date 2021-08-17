@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Form = (props) => {
+  const [content, setContent] = useState(props.content);
+
+  const contentEditingHandler = (event) => {
+    const {
+      target: { name, value },
+    } = event;
+
+    switch (name) {
+      case name === "section-description":
+        setContent(value);
+        break;
+      default:
+        return;
+    }
+  };
+
+  const submitHandler = () => {
+    console.log(content);
+  };
+
   const sectionForm = (
     <textarea
       name="section-description"
       id="section-description"
       cols="30"
       rows="10"
-      value={props.data}
+      onChange={contentEditingHandler}
+      value={content}
     ></textarea>
   );
 
@@ -36,7 +57,11 @@ const Form = (props) => {
     </React.Fragment>
   );
 
-  return <form>{props.isPortfolio ? portfolioForm : sectionForm}</form>;
+  return (
+    <form onSubmit={submitHandler}>
+      {props.isPortfolio ? portfolioForm : sectionForm}
+    </form>
+  );
 };
 
 export default Form;

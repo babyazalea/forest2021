@@ -5,7 +5,7 @@ import Form from "../../ui/Form/Form";
 const EditingContent = (props) => {
   return (
     <div className="editing-content">
-      <Form isPortFolio={props.isPortFolio} data={props.data} />
+      <Form isPortFolio={props.isPortFolio} content={props.data} />
     </div>
   );
 };
