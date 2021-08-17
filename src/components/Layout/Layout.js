@@ -11,7 +11,12 @@ const Layout = (props) => {
         selectedMenu={props.selectedMenu}
         menuClickHandler={props.menuClickHandler}
       />
-      <main>{props.children}</main>
+      <main>
+        <div className="hidden">
+          <button></button>
+        </div>
+        {props.children}
+      </main>
     </React.Fragment>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   useSpring,
   config,
@@ -7,6 +7,8 @@ import {
   useTransition,
   useChain,
 } from "react-spring";
+
+import AdminContext from "../../../context/admin-context";
 
 import Card from "../Card/Card";
 import ControlBox from "../ControlBox/ControlBox";
@@ -17,6 +19,8 @@ import "./LegalPad.css";
 
 const LegalPad = (props) => {
   const [editMode, setEditMode] = useState(false);
+
+  const adminContext = useContext(AdminContext);
 
   // min length for list: 20
   let transformedArray;
@@ -92,13 +96,17 @@ const LegalPad = (props) => {
       <div className="legal-pad">
         <ul>
           <li></li>
-          <li className="control-btns">
-            <ControlBox
-              isWriting={false}
-              justEdit={props.isJustEdit}
-              editModeHandler={editModeHandler}
-            />
-          </li>
+          {adminContext.isLoggedIn ? (
+            <li className="control-btns">
+              <ControlBox
+                isWriting={false}
+                justEdit={props.isJustEdit}
+                editModeHandler={editModeHandler}
+              />
+            </li>
+          ) : (
+            <li></li>
+          )}
           {transformedArray && !editMode
             ? transformedArray.map((line, index) => (
                 <li key={"text" + index}>
