@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Layout from "./components/layout/Layout";
 import Lights from "./components/effects/Lights/Lights";
@@ -21,7 +21,12 @@ const App = () => {
     <div className="App">
       <Lights />
       <AdminContext.Provider value={{ isLoggedIn: isLoggedIn }}>
-        <Layout selectedMenu={selectedMenu} menuClickHandler={menuClickHandler}>
+        <Layout
+          selectedMenu={selectedMenu}
+          menuClickHandler={menuClickHandler}
+          login={login}
+          logout={logout}
+        >
           {selectedMenu.notice && (
             <Notice viewCloseHandler={viewCloseHandler} />
           )}
