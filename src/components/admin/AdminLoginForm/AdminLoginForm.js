@@ -42,7 +42,7 @@ const AdminLoginForm = (props) => {
   };
 
   return (
-    <div>
+    <div className="admin-login-form">
       {isLoading ? (
         <LoadingDots />
       ) : (

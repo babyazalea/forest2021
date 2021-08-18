@@ -15,6 +15,10 @@ main {
   height: 20px;
 }
 
+.hidden button {
+  margin-bottom: 20px;
+}
+
 .hidden button:active {
   outline: 1px solid #ffa801;
 }
