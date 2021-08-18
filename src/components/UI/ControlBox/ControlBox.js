@@ -5,14 +5,15 @@ import "./ControlBox.css";
 const ControlBox = (props) => {
   const newAndEdit = (
     <React.Fragment>
-      {props.justEdit ? null : (
+      {props.justEdit ? (
+        <button>
+          <i className="fas fa-edit" onClick={props.editModeHandler}></i>
+        </button>
+      ) : (
         <button>
           <i className="fas fa-plus"></i>
         </button>
       )}
-      <button>
-        <i className="fas fa-edit" onClick={props.editModeHandler}></i>
-      </button>
     </React.Fragment>
   );
 
