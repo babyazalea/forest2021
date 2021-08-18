@@ -1,0 +1,37 @@
+.content-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(245, 246, 250, 0.9);
+  box-sizing: border-box;
+  border-top: 50px solid #130f40;
+  overflow: hidden;
+}
+
+.content-wrapper > li {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid #0095c74f;
+}
+
+.content-wrapper > li:first-child {
+  border-bottom: 5px double #fab1a0;
+  padding-top: 40px;
+}
+
+.content-wrapperul .control-btns {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.editing-content {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 70%;
+}

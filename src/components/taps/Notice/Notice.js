@@ -2,6 +2,7 @@ import React from "react";
 
 import Backdrop from "../../ui/Backdrop/Backdrop";
 import LegalPad from "../../ui/LegalPad/LegalPad";
+import Content from "../../content/Content";
 
 const Notice = (props) => {
   const text =
@@ -11,7 +12,9 @@ const Notice = (props) => {
     <React.Fragment>
       <Backdrop onClose={props.viewCloseHandler} />
       <div className="tap notice">
-        <LegalPad content={text} isJustEdit={true} />
+        <LegalPad>
+          <Content content={text} />
+        </LegalPad>
       </div>
     </React.Fragment>
   );

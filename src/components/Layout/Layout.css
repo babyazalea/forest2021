@@ -19,11 +19,15 @@ main {
   outline: 1px solid #ffa801;
 }
 
-.login-btn {
+.hidden-btn {
   width: 50px;
   height: 30px;
   background: none;
   border: none;
+}
+
+.cancel-btn {
+  color: red;
 }
 
 .logout-btn {
