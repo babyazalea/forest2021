@@ -3,13 +3,13 @@ import { useState } from "react";
 export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const login = (id, password) => {
-    console.log(id, password);
+  const login = (responseData) => {
+    localStorage.setItem("localId", responseData["localId"]);
     setIsLoggedIn(true);
   };
 
   const logout = () => {
-    console.log("logout");
+    localStorage.removeItem("localId");
     setIsLoggedIn(false);
   };
 
