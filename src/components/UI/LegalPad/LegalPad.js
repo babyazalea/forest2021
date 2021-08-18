@@ -25,7 +25,7 @@ const LegalPad = (props) => {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    config: config.molasses,
+    config: config.default,
   });
 
   useChain([legalPadAnimation, contentTransition]);
