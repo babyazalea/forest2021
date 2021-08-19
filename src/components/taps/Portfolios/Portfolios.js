@@ -39,7 +39,7 @@ const Portfolios = (props) => {
       <Backdrop onClose={props.viewCloseHandler} />
       <div className="tap portfolios">
         <LegalPad>
-          <Content isJustEdit={false}>
+          <Content isJustEdit={false} sectionName="portfolios">
             <div className="portfolio-container">
               <ul>
                 {portfolios.map((portfolio) => (

@@ -34,10 +34,15 @@ const Content = (props) => {
     setEditMode(true);
   };
 
+  const unEditModeHandler = () => {
+    setEditMode(false);
+  };
+
   const editingPart = (
     <EditingContent
       data={props.content}
-      isPortFolio={props.portfolios ? true : false}
+      sectionName={props.sectionName}
+      unEditModeHandler={unEditModeHandler}
     />
   );
 

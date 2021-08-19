@@ -22,9 +22,8 @@ export const useHttp = () => {
 
       return responseData;
     } catch (err) {
-      if (err.response) {
-        const errorResponse = err.response.data;
-        setError(errorResponse.error.message);
+      if (err.message) {
+        setError(err.message);
       } else {
         setError("알 수 없는 오류 발생. 확인 바람.");
       }
@@ -43,17 +42,43 @@ export const useHttp = () => {
 
       return responseData;
     } catch (err) {
-      if (err.response) {
-        const errorResponse = err.response.data;
-        setError(errorResponse);
+      if (err.message) {
+        setError(err.message);
       } else {
         setError(
-          "일시적으로 데이터를 불러 올 수 없습니다. 잠시 후 다시 시도해주세요."
+          "일시적으로 데이터를 불러올 수 없습니다. 나중에 다시 시도해주세요."
         );
       }
       setIsLoading(false);
     }
   }, []);
 
-  return { isLoading, error, initializeError, sendPostRequest, sendGetRequest };
+  const sendPatchRequest = async (url, data) => {
+    setIsLoading(true);
+
+    try {
+      const response = await axios.patch(url, data);
+      const responseData = await response.data;
+
+      setIsLoading(false);
+
+      return responseData;
+    } catch (err) {
+      if (err.message) {
+        setError(err.message);
+      } else {
+        setError("알 수 없는 오류 발생. 확인 바람.");
+      }
+      setIsLoading(false);
+    }
+  };
+
+  return {
+    isLoading,
+    error,
+    initializeError,
+    sendPostRequest,
+    sendGetRequest,
+    sendPatchRequest,
+  };
 };

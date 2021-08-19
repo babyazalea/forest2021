@@ -1,0 +1,13 @@
+.editing-form {
+  width: 100%;
+  height: 70%;
+}
+
+.section-description {
+  width: 100%;
+  height: 100%;
+}
+
+.error-message {
+  color: red;
+}

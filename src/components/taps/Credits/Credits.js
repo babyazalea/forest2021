@@ -12,7 +12,7 @@ const Credits = (props) => {
       <Backdrop onClose={props.viewCloseHandler} />
       <div className="tap credits">
         <LegalPad>
-          <Content content={text} isJustEdit={true} />
+          <Content content={text} isJustEdit={true} sectionName="credits" />
         </LegalPad>
       </div>
     </React.Fragment>
