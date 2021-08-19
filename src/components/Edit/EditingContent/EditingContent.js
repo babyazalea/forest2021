@@ -11,6 +11,7 @@ const EditingContent = (props) => {
         content={props.data}
         sectionName={props.sectionName}
         unEditModeHandler={props.unEditModeHandler}
+        editedContent={props.editedContent}
       />
     </div>
   );

@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import AdminContext from "../../context/admin-context";
+import { useHttp } from "../../hooks/http-hooks";
 
 import EditingContent from "../edit/EditingContent/EditingContent";
 import ControlBox from "../ui/ControlBox/ControlBox";
@@ -8,24 +9,42 @@ import ControlBox from "../ui/ControlBox/ControlBox";
 import "./Content.css";
 
 const Content = (props) => {
+  const [contentData, setContentData] = useState(null);
+  const [editingData, setEditingData] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const adminContext = useContext(AdminContext);
 
+  const { isLoading, error, sendGetRequest } = useHttp();
+
+  useEffect(() => {
+    const fetchingData = async () => {
+      const url = `https://forest2021-a1e4c-default-rtdb.firebaseio.com/${props.sectionName}.json`;
+
+      try {
+        const responseData = await sendGetRequest(url);
+
+        if (props.sectionName === "notice" || props.sectionName === "credits") {
+          const text = responseData.description;
+          setEditingData(text);
+          const splitedText = text.split("\n");
+          setContentData(splitedText);
+        }
+      } catch (err) {}
+    };
+
+    fetchingData();
+  }, [sendGetRequest, props.sectionName]);
+
   // min length for list: 20
-  let transformedArray;
   let emptyLines = [];
 
-  if (props.content) {
-    transformedArray = props.content.split("<br/>");
-  }
-
-  if (transformedArray && transformedArray.length < 20) {
-    const count = 20 - transformedArray.length;
+  if (contentData && contentData.length < 20) {
+    const count = 20 - contentData.length;
     for (let i = 1; i < count; i++) {
       emptyLines.push("");
     }
   } else {
-    for (let i = 1; i < 20; i++) {
+    for (let i = 1; i < 18; i++) {
       emptyLines.push("");
     }
   }
@@ -38,11 +57,17 @@ const Content = (props) => {
     setEditMode(false);
   };
 
+  const editedContent = (ct) => {
+    setContentData(ct);
+    unEditModeHandler();
+  };
+
   const editingPart = (
     <EditingContent
-      data={props.content}
+      data={editingData}
       sectionName={props.sectionName}
       unEditModeHandler={unEditModeHandler}
+      editedContent={editedContent}
     />
   );
 
@@ -61,16 +86,28 @@ const Content = (props) => {
         ) : (
           <li></li>
         )}
-        {transformedArray && !editMode
-          ? transformedArray.map((line, index) => (
-              <li key={"text" + index}>
+        {contentData ? (
+          <React.Fragment>
+            {contentData && !editMode
+              ? contentData.map((line, index) => (
+                  <li key={"text" + index}>
+                    <span>{line}</span>
+                  </li>
+                ))
+              : null}
+            {emptyLines.map((emptyLine, index) => (
+              <li key={"empty" + index}></li>
+            ))}
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            {emptyLines.map((line, index) => (
+              <li key={index}>
                 <span>{line}</span>
               </li>
-            ))
-          : null}
-        {emptyLines.map((emptyLine, index) => (
-          <li key={"empty" + index}></li>
-        ))}
+            ))}
+          </React.Fragment>
+        )}
       </ul>
       {editMode ? editingPart : null}
       {props.children}

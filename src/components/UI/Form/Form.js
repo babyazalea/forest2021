@@ -23,7 +23,7 @@ const Form = (props) => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    if (props.sectionName !== "portfolios") {
+    if (props.sectionName === "notice" || props.sectionName === "credits") {
       const url = `https://forest2021-a1e4c-default-rtdb.firebaseio.com/${props.sectionName}.json`;
 
       const data = {
@@ -35,7 +35,8 @@ const Form = (props) => {
         const responseData = await sendPatchRequest(url, data);
 
         if (responseData) {
-          props.unEditModeHandler();
+          const splitedContent = content.split("\n");
+          props.editedContent(splitedContent);
         }
       } catch (err) {}
     }

@@ -5,6 +5,7 @@
   background: rgba(245, 246, 250, 0.9);
   box-sizing: border-box;
   border-top: 50px solid #130f40;
+  overflow: hidden;
 }
 
 .content-wrapper > li {
