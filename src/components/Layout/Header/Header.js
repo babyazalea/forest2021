@@ -9,37 +9,45 @@ const Header = (props) => {
     <header>
       <nav>
         <ul className="menu">
-          <li onClick={() => props.menuClickHandler("home")}>
+          <li onClick={() => props.closeTapHandler()}>
             <i className="fas fa-tree"></i>
           </li>
-          <li onClick={() => props.menuClickHandler("notice")}>
+          <li onClick={() => props.selectSectionHandler("notice")}>
             <i
               className={
-                props.selectedMenu.notice ? checkedClass : "fas fa-check"
+                props.selectedSection === "notice"
+                  ? checkedClass
+                  : "fas fa-check"
               }
             ></i>
             <span>소개</span>
           </li>
-          <li onClick={() => props.menuClickHandler("portfolios")}>
+          <li onClick={() => props.selectSectionHandler("portfolios")}>
             <i
               className={
-                props.selectedMenu.portfolios ? checkedClass : "fas fa-check"
+                props.selectedSection === "portfolios"
+                  ? checkedClass
+                  : "fas fa-check"
               }
             ></i>
             <span>만든 것들</span>
           </li>
-          <li onClick={() => props.menuClickHandler("reading")}>
+          <li onClick={() => props.selectSectionHandler("reading")}>
             <i
               className={
-                props.selectedMenu.reading ? checkedClass : "fas fa-check"
+                props.selectedSection === "reading"
+                  ? checkedClass
+                  : "fas fa-check"
               }
             ></i>
             <span>읽을거리</span>
           </li>
-          <li onClick={() => props.menuClickHandler("credits")}>
+          <li onClick={() => props.selectSectionHandler("credits")}>
             <i
               className={
-                props.selectedMenu.credits ? checkedClass : "fas fa-check"
+                props.selectedSection === "credits"
+                  ? checkedClass
+                  : "fas fa-check"
               }
             ></i>
             <span>숲에 대하여</span>

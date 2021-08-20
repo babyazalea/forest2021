@@ -22,8 +22,10 @@ const Layout = (props) => {
   return (
     <React.Fragment>
       <Header
-        selectedMenu={props.selectedMenu}
+        selectSectionHandler={props.selectSectionHandler}
+        selectedSection={props.selectedSection}
         menuClickHandler={props.menuClickHandler}
+        closeTapHandler={props.closeTapHandler}
       />
       <main>
         <div className="hidden">
