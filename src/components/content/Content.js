@@ -3,8 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 import AdminContext from "../../context/admin-context";
 import { useHttp } from "../../hooks/http-hooks";
 
+import LoadingDots from "../ui/LoadingDots/LoadingDots";
 import EditingContent from "../edit/EditingContent/EditingContent";
 import ControlBox from "../ui/ControlBox/ControlBox";
+import ErrorCircle from "../error/ErrorCircle";
 
 import "./Content.css";
 
@@ -86,7 +88,9 @@ const Content = (props) => {
         ) : (
           <li></li>
         )}
-        {contentData ? (
+        {isLoading ? (
+          <LoadingDots />
+        ) : (
           <React.Fragment>
             {contentData && !editMode
               ? contentData.map((line, index) => (
@@ -99,18 +103,11 @@ const Content = (props) => {
               <li key={"empty" + index}></li>
             ))}
           </React.Fragment>
-        ) : (
-          <React.Fragment>
-            {emptyLines.map((line, index) => (
-              <li key={index}>
-                <span>{line}</span>
-              </li>
-            ))}
-          </React.Fragment>
         )}
       </ul>
       {editMode ? editingPart : null}
       {props.children}
+      {error ? <ErrorCircle error={error} /> : null}
     </React.Fragment>
   );
 };

@@ -1,0 +1,29 @@
+.error-circle {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  word-break: keep-all;
+  width: 35%;
+  height: 35%;
+  padding: 20px;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  background-color: #ccc;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.error-circle i {
+  font-size: 2rem;
+  margin: 0 10px 0 0;
+}
+
+.error-circle-message {
+  text-align: center;
+  font-size: 0.8rem;
+}
