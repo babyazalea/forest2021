@@ -1,7 +1,5 @@
 import React from "react";
 
-import Card from "../../ui/Card/Card";
-import Portfolio from "./Portfolio/Portfolio";
 import Backdrop from "../../ui/Backdrop/Backdrop";
 import LegalPad from "../../ui/LegalPad/LegalPad";
 import Content from "../../content/Content";
@@ -39,19 +37,7 @@ const Portfolios = (props) => {
       <Backdrop onClose={props.viewCloseHandler} />
       <div className="tap portfolios">
         <LegalPad>
-          <Content isJustEdit={false} sectionName="portfolios">
-            <div className="portfolio-container">
-              <ul>
-                {portfolios.map((portfolio) => (
-                  <li className="portfolio-item" key={portfolio.id}>
-                    <Card>
-                      <Portfolio portfolio={portfolio} />
-                    </Card>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Content>
+          <Content isJustEdit={false} sectionName="portfolios"></Content>
         </LegalPad>
       </div>
     </React.Fragment>

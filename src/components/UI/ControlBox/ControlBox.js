@@ -5,6 +5,7 @@ import "./ControlBox.css";
 const ControlBox = (props) => {
   const newAndEdit = (
     <React.Fragment>
+      <button onClick={props.logging}>loggin</button>
       {props.justEdit ? (
         <button>
           <i className="fas fa-edit" onClick={props.editModeHandler}></i>

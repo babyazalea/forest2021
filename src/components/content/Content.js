@@ -11,7 +11,12 @@ import ErrorCircle from "../error/ErrorCircle";
 import "./Content.css";
 
 const Content = (props) => {
-  const [contentData, setContentData] = useState(null);
+  const [contentData, setContentData] = useState({
+    notice: null,
+    portfolios: null,
+    reading: null,
+    credits: null,
+  });
   const [editingData, setEditingData] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const adminContext = useContext(AdminContext);
@@ -20,22 +25,33 @@ const Content = (props) => {
 
   useEffect(() => {
     const fetchingData = async () => {
-      const url = `https://forest2021-a1e4c-default-rtdb.firebaseio.com/${props.sectionName}.json`;
+      const sectionName = props.sectionName;
+
+      const url = `https://forest2021-a1e4c-default-rtdb.firebaseio.com/${sectionName}.json`;
 
       try {
         const responseData = await sendGetRequest(url);
 
-        if (props.sectionName === "notice" || props.sectionName === "credits") {
+        if (sectionName === "notice" || sectionName === "credits") {
           const text = responseData.description;
           setEditingData(text);
-          const splitedText = text.split("\n");
-          setContentData(splitedText);
+          const newContentData = text.split("\n");
+          setContentData((prevContentData) => {
+            return {
+              ...prevContentData,
+              [sectionName]: newContentData,
+            };
+          });
         }
       } catch (err) {}
     };
 
     fetchingData();
   }, [sendGetRequest, props.sectionName]);
+
+  const logging = () => {
+    console.log(contentData);
+  };
 
   // min length for list: 20
   let emptyLines = [];
@@ -80,6 +96,7 @@ const Content = (props) => {
         {adminContext.isLoggedIn ? (
           <li className="control-btns">
             <ControlBox
+              logging={logging}
               isWriting={false}
               justEdit={props.isJustEdit}
               editModeHandler={editModeHandler}
@@ -92,8 +109,8 @@ const Content = (props) => {
           <LoadingDots />
         ) : (
           <React.Fragment>
-            {contentData && !editMode
-              ? contentData.map((line, index) => (
+            {(contentData.notice || contentData.credits) && !editMode
+              ? contentData[props.sectionName].map((line, index) => (
                   <li key={"text" + index}>
                     <span>{line}</span>
                   </li>
@@ -106,7 +123,6 @@ const Content = (props) => {
         )}
       </ul>
       {editMode ? editingPart : null}
-      {props.children}
       {error ? <ErrorCircle error={error} /> : null}
     </React.Fragment>
   );
