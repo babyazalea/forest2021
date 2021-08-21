@@ -16,7 +16,6 @@ const App = () => {
     reading: null,
     credits: null,
   });
-  const [editingData, setEditingData] = useState(null);
   const [selectedSection, setSelecetedSection] = useState(null);
   const { isLoggedIn, login, logout } = useAuth();
   const { error, sendGetRequest } = useHttp();
@@ -32,7 +31,6 @@ const App = () => {
 
         if (title === "notice" || title === "credits") {
           const text = responseData.description;
-          setEditingData(text);
           const newContentData = text.split("\n");
           setContentData((prevContentData) => {
             return {
@@ -53,8 +51,13 @@ const App = () => {
     setSelecetedSection(section);
   };
 
-  const onEditedContent = (newContentData) => {
-    setContentData(newContentData);
+  const editedContent = (sectionName, newContentData) => {
+    setContentData((prevContentData) => {
+      return {
+        ...prevContentData,
+        [sectionName]: newContentData,
+      };
+    });
   };
 
   const closeTapHandler = () => {
@@ -76,8 +79,7 @@ const App = () => {
             closeTapHandler={closeTapHandler}
             selectedSection={selectedSection}
             contentData={contentData}
-            editingData={editingData}
-            onEditedContent={onEditedContent}
+            editedContent={editedContent}
             error={error}
           />
         </Layout>

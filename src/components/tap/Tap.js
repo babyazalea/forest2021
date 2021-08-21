@@ -13,6 +13,7 @@ const Tap = (props) => {
           <LegalPad>
             <Content
               isJustEdit={true}
+              editedContent={props.editedContent}
               sectionName={props.selectedSection}
               contentData={props.contentData}
             />

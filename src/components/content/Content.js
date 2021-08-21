@@ -2,11 +2,11 @@ import React, { useState, useContext } from "react";
 
 import AdminContext from "../../context/admin-context";
 
-import EditingContent from "../edit/EditingContent/EditingContent";
 import ControlBox from "../ui/ControlBox/ControlBox";
 import ErrorCircle from "../error/ErrorCircle";
 
 import "./Content.css";
+import Form from "../ui/Form/Form";
 
 let emptyLines = [];
 
@@ -26,18 +26,15 @@ const Content = (props) => {
     setEditMode(false);
   };
 
-  const editedContent = (newContentData) => {
-    props.onEditedContent(newContentData);
-    unEditModeHandler();
-  };
-
   const editingPart = (
-    <EditingContent
-      data={props.editingData}
-      sectionName={props.sectionName}
-      unEditModeHandler={unEditModeHandler}
-      editedContent={editedContent}
-    />
+    <div className="editing-content">
+      <Form
+        contentData={props.contentData[props.sectionName]}
+        sectionName={props.sectionName}
+        unEditModeHandler={unEditModeHandler}
+        editedContent={props.editedContent}
+      />
+    </div>
   );
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHttp } from "../../../hooks/http-hooks";
 
 import LoadingDots from "../LoadingDots/LoadingDots";
@@ -6,7 +6,13 @@ import LoadingDots from "../LoadingDots/LoadingDots";
 import "./Form.css";
 
 const Form = (props) => {
-  const [content, setContent] = useState(props.content);
+  const [editingContent, setEditingContent] = useState(null);
+
+  useEffect(() => {
+    if (props.contentData) {
+      setEditingContent(props.contentData.join("\n"));
+    }
+  }, [props.contentData]);
 
   const { isLoading, error, sendPostRequest, sendPatchRequest } = useHttp();
 
@@ -16,7 +22,7 @@ const Form = (props) => {
     } = event;
 
     if (name === "section-description") {
-      setContent(value);
+      setEditingContent(value);
     }
   };
 
@@ -27,7 +33,7 @@ const Form = (props) => {
       const url = `https://forest2021-a1e4c-default-rtdb.firebaseio.com/${props.sectionName}.json`;
 
       const data = {
-        description: content,
+        description: editingContent,
         lastSavedAt: Date.now(),
       };
 
@@ -35,8 +41,9 @@ const Form = (props) => {
         const responseData = await sendPatchRequest(url, data);
 
         if (responseData) {
-          const splitedContent = content.split("\n");
-          props.editedContent(splitedContent);
+          const splitedContent = editingContent.split("\n");
+          props.editedContent(props.sectionName, splitedContent);
+          props.unEditModeHandler();
         }
       } catch (err) {}
     }
@@ -49,7 +56,7 @@ const Form = (props) => {
       cols="30"
       rows="10"
       onChange={contentEditingHandler}
-      value={content}
+      value={editingContent || ""}
     ></textarea>
   );
 
