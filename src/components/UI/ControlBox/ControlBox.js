@@ -6,7 +6,7 @@ const ControlBox = (props) => {
   const newAndEdit = (
     <React.Fragment>
       <button onClick={props.logging}>loggin</button>
-      {props.justEdit ? (
+      {props.sectionName === "notice" || props.sectionName === "credits" ? (
         <button>
           <i className="fas fa-edit" onClick={props.editModeHandler}></i>
         </button>

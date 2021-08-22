@@ -6,13 +6,13 @@
   align-items: center;
   gap: 10px;
   word-break: keep-all;
-  width: 35%;
-  height: 35%;
+  width: 200px;
+  height: 200px;
   padding: 20px;
   box-sizing: border-box;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -10%);
+  transform: translate(-50%, -30%);
   background-color: #ccc;
   border-radius: 50%;
   opacity: 0.8;

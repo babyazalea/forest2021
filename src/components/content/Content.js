@@ -2,11 +2,12 @@ import React, { useState, useContext } from "react";
 
 import AdminContext from "../../context/admin-context";
 
+import Form from "../ui/Form/Form";
 import ControlBox from "../ui/ControlBox/ControlBox";
+import CardContent from "./CardContent/CardContent";
 import ErrorCircle from "../error/ErrorCircle";
 
 import "./Content.css";
-import Form from "../ui/Form/Form";
 
 let emptyLines = [];
 
@@ -26,6 +27,10 @@ const Content = (props) => {
     setEditMode(false);
   };
 
+  const emptyLinesPart = emptyLines.map((emptyLine, index) => (
+    <li key={"empty" + index}></li>
+  ));
+
   const editingPart = (
     <div className="editing-content">
       <Form
@@ -37,6 +42,11 @@ const Content = (props) => {
     </div>
   );
 
+  let errorPart;
+  if (!editMode) {
+    errorPart = <ErrorCircle />;
+  }
+
   return (
     <React.Fragment>
       <ul className="content-wrapper">
@@ -45,31 +55,34 @@ const Content = (props) => {
           <li className="control-btns">
             <ControlBox
               isWriting={false}
-              justEdit={props.isJustEdit}
+              sectionName={props.sectionName}
               editModeHandler={editModeHandler}
             />
           </li>
         ) : null}
         <li></li>
-        {(props.sectionName === "notice" || props.sectionName === "credits") &&
-        !editMode ? (
+        {props.contentData[props.sectionName] !== null && !editMode ? (
           <React.Fragment>
-            {props.contentData[props.sectionName].map((line, index) => (
-              <li key={"text" + index}>
-                <span>{line}</span>
-              </li>
-            ))}
-            {emptyLines.map((emptyLine, index) => (
-              <li key={"empty" + index}></li>
-            ))}
+            {props.sectionName === "notice" ||
+            props.sectionName === "credits" ? (
+              props.contentData[props.sectionName].map((line, index) => (
+                <li key={"text" + index}>
+                  <span>{line}</span>
+                </li>
+              ))
+            ) : (
+              <CardContent
+                sectionName={props.sectionName}
+                contents={props.contentData[props.sectionName]}
+              />
+            )}
           </React.Fragment>
-        ) : null}
-        {emptyLines.map((emptyLine, index) => (
-          <li key={"empty" + index}></li>
-        ))}
+        ) : (
+          errorPart
+        )}
+        {emptyLinesPart}
       </ul>
       {editMode ? editingPart : null}
-      {props.error ? <ErrorCircle error={props.error} /> : null}
     </React.Fragment>
   );
 };

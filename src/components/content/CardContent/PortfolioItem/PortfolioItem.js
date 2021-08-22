@@ -1,10 +1,10 @@
 import React from "react";
 
-import "./Portfolio.css";
+import "./PortfolioItem.css";
 
-const Portfolio = (props) => {
+const PortfolioItem = (props) => {
   return (
-    <div className="portfolio">
+    <div className="portfolio-item">
       <div className="portfolio-content">
         <img
           className="portfolio-logo"
@@ -16,7 +16,7 @@ const Portfolio = (props) => {
         </span>
         <div className="portfolio-icons">
           <a
-            href={props.portfolio.portfolioUrl}
+            href={props.portfolio.playUrl}
             target="_blank"
             rel="noreferrer"
             className="portfolio-icon-play"
@@ -37,4 +37,4 @@ const Portfolio = (props) => {
   );
 };
 
-export default Portfolio;
+export default PortfolioItem;
