@@ -16,34 +16,29 @@ for (let i = 1; i < 18; i++) {
 }
 
 const Content = (props) => {
-  const [editMode, setEditMode] = useState(false);
+  const [tapContentEdit, setTapContentEdit] = useState(false);
+  const [addMode, setAddMode] = useState(false);
   const adminContext = useContext(AdminContext);
 
-  const editModeHandler = () => {
-    setEditMode(true);
+  const editModeHandler = (sectionName) => {
+    if (sectionName === "notice" || sectionName === "credits") {
+      setTapContentEdit(true);
+    } else {
+      setAddMode(true);
+    }
   };
 
   const unEditModeHandler = () => {
-    setEditMode(false);
+    setTapContentEdit(false);
+    setAddMode(false);
   };
 
   const emptyLinesPart = emptyLines.map((emptyLine, index) => (
     <li key={"empty" + index}></li>
   ));
 
-  const editingPart = (
-    <div className="editing-content">
-      <Form
-        contentData={props.contentData[props.sectionName]}
-        sectionName={props.sectionName}
-        unEditModeHandler={unEditModeHandler}
-        editedContent={props.editedContent}
-      />
-    </div>
-  );
-
   let errorPart;
-  if (!editMode) {
+  if (!tapContentEdit) {
     errorPart = <ErrorCircle />;
   }
 
@@ -59,9 +54,10 @@ const Content = (props) => {
               editModeHandler={editModeHandler}
             />
           </li>
-        ) : null}
-        <li></li>
-        {props.contentData[props.sectionName] !== null && !editMode ? (
+        ) : (
+          <li></li>
+        )}
+        {props.contentData[props.sectionName] !== null && !tapContentEdit ? (
           <React.Fragment>
             {props.sectionName === "notice" ||
             props.sectionName === "credits" ? (
@@ -72,6 +68,7 @@ const Content = (props) => {
               ))
             ) : (
               <CardContent
+                addMode={addMode}
                 sectionName={props.sectionName}
                 contents={props.contentData[props.sectionName]}
               />
@@ -82,7 +79,16 @@ const Content = (props) => {
         )}
         {emptyLinesPart}
       </ul>
-      {editMode ? editingPart : null}
+      {tapContentEdit && (
+        <div className="editing-content">
+          <Form
+            contentData={props.contentData[props.sectionName]}
+            sectionName={props.sectionName}
+            unEditModeHandler={unEditModeHandler}
+            editedContent={props.editedContent}
+          />
+        </div>
+      )}
     </React.Fragment>
   );
 };

@@ -26,3 +26,7 @@
 .card-content-container .reading-line {
   min-height: 100px;
 }
+
+.card-content-container .new-reading-line {
+  min-height: 100px;
+}

@@ -60,8 +60,8 @@ const Form = (props) => {
     ></textarea>
   );
 
-  const portfolioForm = (
-    <React.Fragment>
+  let newCardContent = (
+    <div className="new-portfolio-content">
       <div className="logo-image-upload">
         <input
           type="file"
@@ -70,20 +70,42 @@ const Form = (props) => {
           accept="image/png, image/jpeg"
         />
       </div>
-      <div>
+      <div className="new-portfolio-description">
         <textarea
           name="portfolio-description"
           className="portfolio-description"
           cols="30"
-          rows="10"
+          rows="5"
         ></textarea>
       </div>
-      <div>
+      <div className="new-portfolio-link">
         <input type="text" name="portfolio-play-link" />
         <input type="text" name="portfolio-github-link" />
       </div>
-    </React.Fragment>
+    </div>
   );
+
+  if (props.sectionName === "reading") {
+    newCardContent = (
+      <div className="new-reading-content">
+        <div>
+          <input
+            type="text"
+            name="reading-title"
+            className="reading-title-input"
+          />
+        </div>
+        <div className="logo-image-upload">
+          <input
+            type="file"
+            className="logo-image"
+            name="logo-image"
+            accept="image/png, image/jpeg"
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <form className="editing-form" onSubmit={submitHandler}>
@@ -91,7 +113,9 @@ const Form = (props) => {
         <LoadingDots customClassName="in-tap" />
       ) : (
         <React.Fragment>
-          {props.isPortfolio ? portfolioForm : sectionForm}
+          {props.sectionName === "portfolios" || props.sectionName === "reading"
+            ? newCardContent
+            : sectionForm}
           {error ? <p className="error-message">{error}</p> : null}
         </React.Fragment>
       )}
