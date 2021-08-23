@@ -88,7 +88,7 @@ const Form = (props) => {
   return (
     <form className="editing-form" onSubmit={submitHandler}>
       {isLoading ? (
-        <LoadingDots />
+        <LoadingDots customClassName="in-tap" />
       ) : (
         <React.Fragment>
           {props.isPortfolio ? portfolioForm : sectionForm}
