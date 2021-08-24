@@ -47,20 +47,10 @@ const Content = (props) => {
         addMode={props.contentData[props.sectionName].editing}
         sectionName={props.sectionName}
         contents={props.contentData[props.sectionName].content}
+        cancelEditingHandler={props.cancelEditingHandler}
       />
     );
   }
-
-  // const unEditModeHandler = () => {
-  //   setEditingContent((prevState) => {
-  //     for (const content of prevState) {
-  //       return {
-  //         ...prevState,
-  //         [content]: false,
-  //       };
-  //     }
-  //   });
-  // };
 
   let editingPart;
   if (
@@ -70,9 +60,9 @@ const Content = (props) => {
     editingPart = (
       <div className="editing-content">
         <Form
+          cancelEditingHandler={props.cancelEditingHandler}
           contentData={props.contentData[props.sectionName].content}
           sectionName={props.sectionName}
-          // unEditModeHandler={unEditModeHandler}
           editedContent={props.editedContent}
         />
       </div>

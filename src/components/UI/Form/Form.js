@@ -79,7 +79,9 @@ const Form = (props) => {
         ></textarea>
       </div>
       <div className="new-portfolio-link">
+        <label htmlFor="portfolio-play-link">play url</label>
         <input type="text" name="portfolio-play-link" />
+        <label htmlFor="portfolio-gihub-link">github url</label>
         <input type="text" name="portfolio-github-link" />
       </div>
     </div>
@@ -120,6 +122,7 @@ const Form = (props) => {
         </React.Fragment>
       )}
       <button>save</button>
+      <button onClick={() => props.cancelEditingHandler()}>cancel</button>
     </form>
   );
 };

@@ -24,6 +24,23 @@ const CardContent = (props) => {
     </li>
   ));
 
+  const newContentPart = (sectionName) => {
+    return (
+      <Card>
+        <div
+          className={
+            sectionName === "portfolios" ? "portfolio-item" : "reading-item"
+          }
+        >
+          <Form
+            sectionName={sectionName}
+            cancelEditingHandler={props.cancelEditingHandler}
+          />
+        </div>
+      </Card>
+    );
+  };
+
   return (
     <div className={`card-content-container`}>
       <ul>
@@ -32,9 +49,7 @@ const CardContent = (props) => {
             {props.addMode ? (
               <React.Fragment>
                 <li className="new-portfolio-line">
-                  <Card>
-                    <Form sectionName={props.sectionName} />
-                  </Card>
+                  {newContentPart(props.sectionName)}
                 </li>
                 {portfoliosPart}
               </React.Fragment>
@@ -47,9 +62,7 @@ const CardContent = (props) => {
             {props.addMode ? (
               <React.Fragment>
                 <li className="new-reading-line">
-                  <Card>
-                    <Form sectionName={props.sectionName} />
-                  </Card>
+                  {newContentPart(props.sectionName)}
                 </li>
                 {readingsPart}
               </React.Fragment>

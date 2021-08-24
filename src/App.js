@@ -94,8 +94,7 @@ const App = () => {
     }
   }, [sendGetRequest]);
 
-  const selectSectionHandler = (sectionName) => {
-    setSelecetedSection(sectionName);
+  const cancelEditingHandler = () => {
     setContentData((prevState) => {
       const updatedData = { ...prevState };
       for (const sectionData in prevState) {
@@ -120,6 +119,11 @@ const App = () => {
         },
       };
     });
+  };
+
+  const selectSectionHandler = (sectionName) => {
+    setSelecetedSection(sectionName);
+    cancelEditingHandler();
   };
 
   const editedContent = (sectionName, newContentData) => {
@@ -147,10 +151,11 @@ const App = () => {
           closeTapHandler={closeTapHandler}
         >
           <Tap
+            contentData={contentData}
+            cancelEditingHandler={cancelEditingHandler}
             editModeHandler={editModeHandler}
             closeTapHandler={closeTapHandler}
             selectedSection={selectedSection}
-            contentData={contentData}
             editedContent={editedContent}
             error={error}
           />
