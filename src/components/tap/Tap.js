@@ -12,7 +12,7 @@ const Tap = (props) => {
         <div className={`tap ${props.selectedSection}`}>
           <LegalPad>
             <Content
-              isJustEdit={true}
+              editModeHandler={props.editModeHandler}
               editedContent={props.editedContent}
               sectionName={props.selectedSection}
               contentData={props.contentData}

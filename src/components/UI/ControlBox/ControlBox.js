@@ -16,22 +16,7 @@ const ControlBox = (props) => {
     </React.Fragment>
   );
 
-  const writeAndEdit = (
-    <React.Fragment>
-      <button>
-        <i className="fas fa-save"></i>
-      </button>
-      <button>
-        <i className="fas fa-times"></i>
-      </button>
-    </React.Fragment>
-  );
-
-  return (
-    <div className="control-box">
-      {props.isWriting ? writeAndEdit : newAndEdit}
-    </div>
-  );
+  return <div className="control-box">{newAndEdit}</div>;
 };
 
 export default ControlBox;

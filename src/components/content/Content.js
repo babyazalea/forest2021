@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 
 import AdminContext from "../../context/admin-context";
 
@@ -16,29 +16,71 @@ for (let i = 1; i < 18; i++) {
 }
 
 const Content = (props) => {
-  const [tapContentEdit, setTapContentEdit] = useState(false);
-  const [addMode, setAddMode] = useState(false);
   const adminContext = useContext(AdminContext);
-
-  const editModeHandler = (sectionName) => {
-    if (sectionName === "notice" || sectionName === "credits") {
-      setTapContentEdit(true);
-    } else {
-      setAddMode(true);
-    }
-  };
-
-  const unEditModeHandler = () => {
-    setTapContentEdit(false);
-    setAddMode(false);
-  };
 
   const emptyLinesPart = emptyLines.map((emptyLine, index) => (
     <li key={"empty" + index}></li>
   ));
 
+  let contentPart;
+  if (
+    props.contentData[props.sectionName].content &&
+    !props.contentData[props.sectionName].editing &&
+    (props.sectionName === "notice" || props.sectionName === "credits")
+  ) {
+    contentPart = props.contentData[props.sectionName].content.map(
+      (line, index) => (
+        <li key={"text" + index}>
+          <span>{line}</span>
+        </li>
+      )
+    );
+  }
+
+  let cardContentPart;
+  if (
+    props.contentData[props.sectionName].content &&
+    (props.sectionName === "portfolios" || props.sectionName === "reading")
+  ) {
+    cardContentPart = (
+      <CardContent
+        addMode={props.contentData[props.sectionName].editing}
+        sectionName={props.sectionName}
+        contents={props.contentData[props.sectionName].content}
+      />
+    );
+  }
+
+  // const unEditModeHandler = () => {
+  //   setEditingContent((prevState) => {
+  //     for (const content of prevState) {
+  //       return {
+  //         ...prevState,
+  //         [content]: false,
+  //       };
+  //     }
+  //   });
+  // };
+
+  let editingPart;
+  if (
+    props.contentData[props.sectionName].editing &&
+    (props.sectionName === "notice" || props.sectionName === "credits")
+  ) {
+    editingPart = (
+      <div className="editing-content">
+        <Form
+          contentData={props.contentData[props.sectionName].content}
+          sectionName={props.sectionName}
+          // unEditModeHandler={unEditModeHandler}
+          editedContent={props.editedContent}
+        />
+      </div>
+    );
+  }
+
   let errorPart;
-  if (!tapContentEdit) {
+  if (props.contentData[props.sectionName].content === null) {
     errorPart = <ErrorCircle />;
   }
 
@@ -49,46 +91,19 @@ const Content = (props) => {
         {adminContext.isLoggedIn ? (
           <li className="control-btns">
             <ControlBox
-              isWriting={false}
               sectionName={props.sectionName}
-              editModeHandler={editModeHandler}
+              editModeHandler={props.editModeHandler}
             />
           </li>
         ) : (
           <li></li>
         )}
-        {props.contentData[props.sectionName] !== null && !tapContentEdit ? (
-          <React.Fragment>
-            {props.sectionName === "notice" ||
-            props.sectionName === "credits" ? (
-              props.contentData[props.sectionName].map((line, index) => (
-                <li key={"text" + index}>
-                  <span>{line}</span>
-                </li>
-              ))
-            ) : (
-              <CardContent
-                addMode={addMode}
-                sectionName={props.sectionName}
-                contents={props.contentData[props.sectionName]}
-              />
-            )}
-          </React.Fragment>
-        ) : (
-          errorPart
-        )}
+        {contentPart}
         {emptyLinesPart}
       </ul>
-      {tapContentEdit && (
-        <div className="editing-content">
-          <Form
-            contentData={props.contentData[props.sectionName]}
-            sectionName={props.sectionName}
-            unEditModeHandler={unEditModeHandler}
-            editedContent={props.editedContent}
-          />
-        </div>
-      )}
+      {cardContentPart}
+      {editingPart}
+      {errorPart}
     </React.Fragment>
   );
 };
