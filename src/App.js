@@ -13,49 +13,11 @@ const App = () => {
   const [contentData, setContentData] = useState({
     notice: { content: null, editing: false },
     portfolios: {
-      content: [
-        {
-          id: 1,
-          logo: "https://i.picsum.photos/id/651/200/300.jpg?hmac=0w4DoCrs0gvMucmilCFXoqZAB9P3n94dVJ70mY8A4yQ",
-          description: "test",
-          playUrl: "https://www.youtube.com/",
-          githubUrl: "https://github.com/babyazalea/forest2021",
-        },
-        {
-          id: 2,
-          logo: "https://i.picsum.photos/id/651/200/300.jpg?hmac=0w4DoCrs0gvMucmilCFXoqZAB9P3n94dVJ70mY8A4yQ",
-          description: "test2",
-          playUrl: "https://www.youtube.com/",
-          githubUrl: "https://github.com/babyazalea/forest2021",
-        },
-        {
-          id: 3,
-          logo: "https://i.picsum.photos/id/651/200/300.jpg?hmac=0w4DoCrs0gvMucmilCFXoqZAB9P3n94dVJ70mY8A4yQ",
-          description: "test3",
-          playUrl: "https://www.youtube.com/",
-          githubUrl: "https://github.com/babyazalea/forest2021",
-        },
-      ],
+      content: [],
       editing: false,
     },
     reading: {
-      content: [
-        {
-          id: 1,
-          title: "reading test",
-          backgroundUrl: "https://www.gatsbyjs.com/Gatsby-Monogram.svg",
-        },
-        {
-          id: 2,
-          title: "reading test",
-          backgroundUrl: "https://www.gatsbyjs.com/Gatsby-Monogram.svg",
-        },
-        {
-          id: 3,
-          title: "reading test",
-          backgroundUrl: "https://www.gatsbyjs.com/Gatsby-Monogram.svg",
-        },
-      ],
+      content: [],
       editing: false,
     },
     credits: { content: null, editing: false },
@@ -65,7 +27,7 @@ const App = () => {
   const { error, sendGetRequest } = useHttp();
 
   useEffect(() => {
-    const sectionTitles = ["notice", "portfoilos", "reading", "credits"];
+    const sectionTitles = ["notice", "portfolios", "reading", "credits"];
 
     const fetchingData = async (title) => {
       const url = `https://forest2021-a1e4c-default-rtdb.firebaseio.com/${title}.json`;
@@ -73,19 +35,44 @@ const App = () => {
       try {
         const responseData = await sendGetRequest(url);
 
+        let fetchedContent;
+
         if (title === "notice" || title === "credits") {
           const text = responseData.description;
-          const newContentData = text.split("\n");
-          setContentData((prevContentData) => {
-            return {
-              ...prevContentData,
-              [title]: {
-                content: newContentData,
-                editing: false,
-              },
-            };
-          });
+          fetchedContent = text.split("\n");
+        } else {
+          const contentIdArr = Object.keys(responseData);
+          const contents = [];
+          for (const contentId of contentIdArr) {
+            const content =
+              title === "portfolios"
+                ? {
+                    id: contentId,
+                    description: responseData[contentId].description,
+                    logo: responseData[contentId].logoImageUrl,
+                    githubUrl: responseData[contentId].githubUrl,
+                    playUrl: responseData[contentId].playUrl,
+                  }
+                : {
+                    id: contentId,
+                    title: responseData[contentId].title,
+                    logoImageUrl: responseData[contentId].logoImageUrl,
+                  };
+            contents.push(content);
+          }
+          const descContents = contents.reverse();
+          fetchedContent = descContents;
         }
+
+        setContentData((prevContentData) => {
+          return {
+            ...prevContentData,
+            [title]: {
+              content: fetchedContent,
+              editing: false,
+            },
+          };
+        });
       } catch (err) {}
     };
 
@@ -127,12 +114,27 @@ const App = () => {
   };
 
   const editedContent = (sectionName, newContentData) => {
-    setContentData((prevContentData) => {
-      return {
-        ...prevContentData,
-        [sectionName]: newContentData,
-      };
-    });
+    if (sectionName === "notice" || sectionName === "credits") {
+      setContentData((prevContentData) => {
+        return {
+          ...prevContentData,
+          [sectionName]: {
+            content: newContentData,
+            editing: false,
+          },
+        };
+      });
+    } else {
+      console.log("edited content");
+      setContentData((prevContentData) => {
+        const updatedContentData = { ...prevContentData };
+        updatedContentData[sectionName].content.push(newContentData);
+        updatedContentData[sectionName].editing = false;
+        return {
+          ...updatedContentData,
+        };
+      });
+    }
   };
 
   const closeTapHandler = () => {

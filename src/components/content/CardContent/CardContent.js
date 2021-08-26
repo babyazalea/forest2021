@@ -8,16 +8,16 @@ import "./CardContent.css";
 import Form from "../../ui/Form/Form";
 
 const CardContent = (props) => {
-  const portfoliosPart = props.contents.map((content) => (
-    <li className="portfolio-line" key={content.id}>
+  const portfoliosPart = props.contents.map((content, index) => (
+    <li className="portfolio-line" key={index}>
       <Card>
         <PortfolioItem portfolio={content} />
       </Card>
     </li>
   ));
 
-  const readingsPart = props.contents.map((content) => (
-    <li className="reading-line" key={content.id}>
+  const readingsPart = props.contents.map((content, index) => (
+    <li className="reading-line" key={index}>
       <Card>
         <ReadingItem reading={content} />
       </Card>
@@ -35,6 +35,7 @@ const CardContent = (props) => {
           <Form
             sectionName={sectionName}
             cancelEditingHandler={props.cancelEditingHandler}
+            editedContent={props.editedContent}
           />
         </div>
       </Card>

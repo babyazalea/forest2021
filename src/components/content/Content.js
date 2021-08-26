@@ -47,6 +47,7 @@ const Content = (props) => {
         addMode={props.contentData[props.sectionName].editing}
         sectionName={props.sectionName}
         contents={props.contentData[props.sectionName].content}
+        editedContent={props.editedContent}
         cancelEditingHandler={props.cancelEditingHandler}
       />
     );
